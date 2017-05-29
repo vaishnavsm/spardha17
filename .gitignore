@@ -1,0 +1,14 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+#Env
+spardha_back/
+
+# Distribution / packaging
+bin/
+build/
+
+# Django stuff:
+*.log
+*.pot
