@@ -1,0 +1,65 @@
+/*Navbar Unreactive*/
+.navbar-custom{
+  position: fixed;
+  width: 100%;
+}
+.navbar-custom-float-top{
+  top: 0;
+}
+.navbar-custom-float-bottom{
+  bottom: 0;
+}
+.navbar-custom-centered{
+  position: relative;
+  text-align:center;
+  overflow: hidden;
+  color: white; /*text color*/
+  background-color: #222;
+}
+.navbar-custom-centered a{
+  color: white;
+  text-decoration: none;
+}
+.navbar-custom-centered ul{
+  margin: 0;
+  list-style-type: none;
+}
+.navbar-custom-centered li{
+  display: inline;
+}
+.navbar-custom-centered li a{
+  display: inline-block;
+  margin-left: 3px;
+  margin-right: 3px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  text-align: center;
+}
+.navbar-custom-centered li a:hover{
+  background-color: #999;
+}
+
+.navbar-custom-centered .nav-header-custom{
+  font-size: 18px;
+  font-weight: 500;
+}
+.navbar-custom-centered .nav-header-custom li a{
+  padding: 14px 6%;
+}
+.navbar-custom-centered .nav-header-custom .navbar-custom-brand{
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.navbar-custom-centered .nav-footer-custom{
+  font-size: 13px;
+  font-weight: 200;
+}
+.navbar-custom-centered .nav-footer-custom li a{
+  padding: 1px 3%;
+}
+.navbar-custom-centered .nav-footer-custom .navbar-custom-brand{
+  font-size: 14px;
+  font-weight: 300;
+}
+/*End of Navbar section*/
