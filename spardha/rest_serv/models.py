@@ -31,12 +31,12 @@ class Event(models.Model):
     RegisteredTeams=models.ManyToManyField(Team,on_delete=models.CASCADE,blank=True,null=True)
     RegisteredPlayers=models.ManyToManyField(Player,on_delete=models.CASCADE,blank=True,null=True)
 
-class PersistentNotification(models.Model)
+class PersistentNotification(models.Model):
     NotificationID=models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     NotificationText=models.CharField(max_length=200)
     Priority=models.IntegerField(default=1,blank=True)
     
-class UserNotification(models.Model)
+class UserNotification(models.Model):
     NotificationID=models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     NotificationText=models.CharField(max_length=200)
     Priority=models.IntegerField(default=1,blank=True)
