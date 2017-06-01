@@ -6,7 +6,8 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/bootstrap.css">
 	  <link rel="stylesheet" href="css/animate.min.css">
-    <link href="css/stylish-portfolio.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/stylish-portfolio.css">
+    <link rel="stylesheet" href="css/bg-slideshow.css">
     <link rel="stylesheet" href="css/custom.css">
     <!-- Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -18,6 +19,7 @@
     <script src="js/jquery.nav.js"></script>
     <script src="js/jquery.parallax.js"></script>
     <script src="js/jquery.scrollTo-1.4.2-min.js"></script>
+    <script src="js/bg-slideshow.js"></script>
     <script src="js/custom.js"></script>
     <!-- Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,7 +36,7 @@
             <a class="" href="#">Events</a>
           </li>
           <li id="nav-li-brand">
-            <a class="navbar-custom-brand" href="#header"> Spardha '17</a>
+            <a class="navbar-custom-brand" href="#top"> Spardha '17</a>
           </li>
           <li id="nav-li-reg">
             <a href="#">Register</a>
@@ -44,12 +46,14 @@
     </nav>
     
     <!-- Header -->
-<header id="top" class="header bg-slideshow" data-slideshow-slide='2'>
-  <div class="slide" id="slide_0" data-image='b1.jpg' data-overlay='rgba(232, 69, 44 ,0.4)'> </div>
-  <div class="slide" id="slide_1" data-image='b2.jpg' data-overlay='rgba(69, 232, 44 ,0.4)'> </div>
-  <div class="slide" id="slide_2" data-image='b3.jpg' data-overlay='rgba(69, 44, 232 ,0.4)'> </div>
-  
-    <div class="bg-overlay text-vertical-center">
+<header id="top" class="header" style="">
+  <div id="top_bg" class="bg-slideshow">
+  <div class="overlay"></div>
+  <img class="slide" src='./images/b1.jpg' data-overlay='rgba(232, 69, 44 ,0.4)'> </img>
+  <img class="slide" src='./images/b2.jpg' data-overlay='rgba(69, 232, 44 ,0.4)'> </img>
+  <img class="slide" src='./images/b3.jpg' data-overlay='rgba(69, 44, 232 ,0.4)'> </img>
+  </div>
+    <div class="bg-content text-vertical-center">
         <h1>Spardha 2017</h1>
         <h3>IIT (BHU), Varanasi</h3>
         <br>    
@@ -59,6 +63,7 @@
         <a href="register.htm" class="btn btn-light btn-lg btn-large">Register</a>
         <a href="#contacts" class="btn btn-dark btn-lg">Contact Us</a>
     </div>
+    
 </header>
 
 <!-- Devider -->
