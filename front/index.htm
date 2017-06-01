@@ -17,6 +17,7 @@
     <script src="js/smoothscroll.js"></script>
     <script src="js/jquery.nav.js"></script>
     <script src="js/jquery.parallax.js"></script>
+    <script src="js/jquery.scrollTo-1.4.2-min.js"></script>
     <script src="js/custom.js"></script>
     <!-- Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,8 +25,7 @@
 	  <meta name="description" content=""> <!-- Content Writers, Please Finish -->
     <meta charset="utf-8">
   </head>
-  <body data-spy="scroll" data-target=".navbar-custom" data-offset="50">
-    
+  <body>
     <!--Navigation-->
     <nav class="navbar-custom navbar-custom-float-top" role="navigation">
       <div class="navbar-custom-centered">
@@ -34,7 +34,7 @@
             <a class="" href="#">Events</a>
           </li>
           <li id="nav-li-brand">
-            <a class="navbar-custom-brand" href="#header"> Spardha </a>
+            <a class="navbar-custom-brand" href="#header"> Spardha '17</a>
           </li>
           <li id="nav-li-reg">
             <a href="#">Register</a>
@@ -43,6 +43,155 @@
       </div>
     </nav>
     
+    <!-- Header -->
+<header id="top" class="header bg-slideshow" data-slideshow-slide='2'>
+  <div class="slide" id="slide_0" data-image='b1.jpg' data-overlay='rgba(232, 69, 44 ,0.4)'> </div>
+  <div class="slide" id="slide_1" data-image='b2.jpg' data-overlay='rgba(69, 232, 44 ,0.4)'> </div>
+  <div class="slide" id="slide_2" data-image='b3.jpg' data-overlay='rgba(69, 44, 232 ,0.4)'> </div>
+  
+    <div class="bg-overlay text-vertical-center">
+        <h1>Spardha 2017</h1>
+        <h3>IIT (BHU), Varanasi</h3>
+        <br>    
+        <a href="#sponsors" class="btn btn-dark btn-lg">Sponsors</a>
+        <a href="events.html" class="btn btn-light btn-lg btn-large">Events</a>
+        <a href="#about-divider" class="btn btn-dark btn-lg btn-larger">More</a>
+        <a href="register.htm" class="btn btn-light btn-lg btn-large">Register</a>
+        <a href="#contacts" class="btn btn-dark btn-lg">Contact Us</a>
+    </div>
+</header>
+
+<!-- Devider -->
+<section id="about-divider" class="bg-primary divider">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+              <h1>ABOUT</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About -->
+<section id="about" class="about bg-primary">
+  <div class='bg-overlay'>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>Spardha is the annual Sports festival of IIT (BHU), Varanasi. In its glorious history of over 30 years, Spardha has grown to become the largest and one of the most awaited sports festival of northern India where athletic competition is drawn from throughout the country. Each year, over a thousand participants compete in an array of sports like hockey, basketball, cricket, boxing, tennis and many more, creating a stunning spectacle of exceptional fervidness in athletic talent. The event, embraced by one of the best gatherings of celebrated sportspersons and spirited audience, has always enthused a zest for continuously scaling new zeniths in the pursuit of excellence and vibrancy among one and all. At present, Spardha has a team of over 500 and is also associated with numerous renowned firms and sports organizations. These exhilarating days have many resounding experiences for participants and supporters alike creating a lifetime of memories. Gear up yourself to witness the thrilling and frolicsome SPARDHA.</h2>
+            </div>
+        </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Contacts -->
+<section id="contacts" class="portfolio">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 text-center">
+                <h2>Contact Us</h2>
+                <hr class="small">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="portfolio-item">
+
+                            <img class="img-portfolio img-responsive" src="images/p1.png">
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="portfolio-item">
+
+                            <img class="img-portfolio img-responsive" src="images/p1.png">
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="portfolio-item">
+
+                            <img class="img-portfolio img-responsive" src="images/p1.png">
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+
+                            <img class="img-portfolio img-responsive" src="images/p1.png">
+
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-lg-10 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</section>
+
+
+<!-- Sponsors -->
+<aside id="sponsors" class="call-to-action bg-primary">
+    <div class="text-center">
+        <h1>Sponsors</h1>
+    </div>
+    <img class="img-portfolio img-responsive" src="img/s1.png">
+</aside>
+
+<!-- Custom Theme JavaScript -->
+<script>
+    // Closes the sidebar menu
+    $("#menu-close").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+    // Opens the sidebar menu
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+    // Scrolls to the selected menu item on the page
+    $(function() {
+        $('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
+    //#to-top button appears after scrolling
+    var fixed = false;
+    $(document).scroll(function() {
+        if ($(this).scrollTop() > 250) {
+            if (!fixed) {
+                fixed = true;
+                // $('#to-top').css({position:'fixed', display:'block'});
+                $('#to-top').show("slow", function() {
+                    $('#to-top').css({
+                        position: 'fixed',
+                        display: 'block'
+                    });
+                });
+            }
+        } else {
+            if (fixed) {
+                fixed = false;
+                $('#to-top').hide("slow", function() {
+                    $('#to-top').css({
+                        display: 'none'
+                    });
+                });
+            }
+        }
+    });
+</script>
+
     
   </body>
 </html>
