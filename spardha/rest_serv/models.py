@@ -29,7 +29,6 @@ class Event(models.Model):
     MinPlayersReq=models.IntegerField(default=0)
     MaxPlayersReq=models.IntegerField(default=0)
     RegisteredTeams=models.ManyToManyField(Team,on_delete=models.CASCADE,blank=True,null=True)
-    RegisteredPlayers=models.ManyToManyField(Player,on_delete=models.CASCADE,blank=True,null=True)
 
 class PersistentNotification(models.Model):
     NotificationID=models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
