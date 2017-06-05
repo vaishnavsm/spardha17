@@ -12,3 +12,5 @@ build/
 # Django stuff:
 *.log
 *.pot
+
+ignore/
