@@ -1,15 +1,27 @@
 from django.db import models
+from django.contrib.auth.models import User
+import uuid
+import json
+
+def upload_to(instance, filename):
+    return "player_profile_imgs/{}/{}".format(instance.PlayerID, filename)
 
 class College(models.Model):
     CollegeID=models.AutoField(primary_key=True,editable=False)
     CollegeName=models.CharField(max_length=40,unique=True,editable=False)
-    Players=models.ManyToManyField(Player,on_delete=models.CASCADE,blank=True,null=True)
+    def Create(name_field):
+        if(College.objects.filter(CollegeName=name_field).exists()):
+            return None
+        college = College.objects.create(CollegeName=name_field)
+        college.save()
+        return college
 
 class Player(models.Model):
+    UserRef = models.OneToOneField(User, primary_key=False)
     PlayerID=models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     PlayerName=models.CharField(max_length=40)
-    PlayerImage=models.ImageField(blank=True,null=True)
-    CollegeID=models.ForeignKey(College,on_delete=models.CASCADE,blank=True,null=True)
+    PlayerImage=models.ImageField(blank=True,null=True,upload_to=upload_to)
+    CollegeRef=models.ForeignKey(College,on_delete=models.CASCADE,blank=True,null=True)
     Email=models.EmailField()
     PhoneNumber=models.CharField(max_length=15,blank=True,null=True)
     def Notify(self, Message, Priority=1):
@@ -19,19 +31,18 @@ class Player(models.Model):
     def GetNotifications(self):
         notifications = UserNotification.objects.filter(UserToNotify=self)
         return notifications
+    def Register(name_field, image_field, college_name, email_field, password_field, mob_field):
+        if(User.objects.filter(username=email_field).exists()):
+            return None
+        elif(len(College.objects.filter(CollegeName=college_name))!=1):
+            return None
+        user_field = User.objects.create_user(username=email_field, password=password_field)
+        user_field.save()
+        player = Player.objects.create(UserRef=user_field, PlayerName=name_field, PlayerImage=image_field, Email=email_field,
+                                        CollegeRef=College.objects.get(CollegeName=college_name), PhoneNumber=mob_field)
+        player.save()
+        return player
 
-class Team(models.Model):
-    TeamID=models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    CoachName=models.CharField(max_length=40,blank=True,null=True)
-    CollegeID=models.ForeignKey(College,on_delete=models.CASCADE,blank=True,null=True)
-    Leader=models.ForeignKey(Player, on_delete=models.CASCADE,blank=True,null=True)
-    Members=models.ManyToManyField(Player,on_delete=models.CASCADE)
-    Event=models.ForeignKey(Event,on_delete=models.CASCADE)
-    def NotifyTeam(self, Message, Priority=1):
-        for player in self.Members.all():
-            player.Notify(Message, Priority)
-        return
-    
 class Event(models.Model):
     EventID=models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     EventName=models.CharField(max_length=25)
@@ -39,11 +50,20 @@ class Event(models.Model):
     EventDateTime=models.DateTimeField(blank=True,null=True)
     MinPlayersReq=models.IntegerField(default=0)
     MaxPlayersReq=models.IntegerField(default=0)
-    RegisteredTeams=models.ManyToManyField(Team,on_delete=models.CASCADE,blank=True,null=True)
     def NotifyTeams(self, Message, Priority=1):
         for team in self.RegisteredTeams.all():
             team.NotifyTeam(Message, Priority)
-        return
+        
+class Team(models.Model):
+    TeamRef=models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    CoachName=models.CharField(max_length=40,blank=True,null=True)
+    CollegeRef=models.ForeignKey(College,on_delete=models.CASCADE,blank=True,null=True)
+    Leader=models.ForeignKey(Player, on_delete=models.CASCADE,blank=True,null=True,related_name="team_leader")
+    Members=models.ManyToManyField(Player,related_name="team_members")
+    EventRef=models.ForeignKey(Event,on_delete=models.CASCADE)
+    def NotifyTeam(self, Message, Priority=1):
+        for player in self.Members.all():
+            player.Notify(Message, Priority)
     
 class PersistentNotification(models.Model):
     NotificationID=models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
