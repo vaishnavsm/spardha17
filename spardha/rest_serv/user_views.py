@@ -48,7 +48,3 @@ def LoginView(request):
     else:
         HttpResponse(json.dumps({"error":"true","detail":"unsupported_request"}), content_type="application/json")
     return HttpResponse(json.dumps({"error":"true","detail":"bad_request"}), content_type="application/json")
-
-@api_view([r'GET'])
-def Test(request):
-    return HttpResponse(json.dumps({"error":"false","detail":"WORKS"}), content_type="application/json")

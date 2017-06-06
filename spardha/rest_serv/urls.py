@@ -10,5 +10,4 @@ urlpatterns = [
 #    url(r'^event/model/',),
 #    url(r'^event/rel_team/',),
 #    url(r'^team/rel_player/',),
-    url(r'^test/',user_views.Test),
 ]
