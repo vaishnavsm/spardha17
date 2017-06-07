@@ -2,6 +2,9 @@
 __pycache__/
 *.py[cod]
 
+#Django Migrations
+migrations/
+
 #Env
 spardha_back/
 
