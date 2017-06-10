@@ -8,6 +8,9 @@ migrations/
 #Env
 spardha_back/
 
+#testing
+testing/
+
 # Distribution / packaging
 bin/
 build/
