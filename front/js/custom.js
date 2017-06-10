@@ -11,6 +11,11 @@ $(document).ready(function(){
 //Navbar Fade Done
 $("#top_bg").slideshow(3,6000);
 $("#about").parallax("50%",-0.2);
+
+if(Cookies.get('token')!=undefined){
+  $('#nav-li-reg').find('a').remove().end().append("<a href='dashboard.htm'>Dashboard</a>");
+  $('a#header-reg-btn').prop("href","dashboard.htm").text("Dashboard");
+}
 });
 
 //Function that returns true if the window has scrolled beyond the given element
