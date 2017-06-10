@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/register/register.css">
     <!-- Scripts -->
     <script src="js/jquery.js"></script>
+    <script src="js/js.cookie.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/register/jquery.backstretch.js"></script>
     <script src="js/register/scripts.js"></script>
@@ -48,7 +49,7 @@
                             </div>
                             <div class="form-group">
                               <label class="sr-only" for="form-password">Password</label>
-                              <input type="password" name="form-password" placeholder="Password" class="form-password form-control" id="form-password">
+                              <input type="password" name="form-password" placeholder="Password" class="form-password form-control" id="form-login-password">
                             </div>
                             <button type="submit" class="btn">Sign In</button>
                         </form>
@@ -74,7 +75,7 @@
                           <div class="form-bottom">
                         <form role="form" action="" method="post" class="registration-form">
                           <div class="form-group">
-                            <label class="sr-only" for="form-name">First name</label>
+                            <label class="sr-only" for="form-name">Name</label>
                               <input type="text" name="form-name" placeholder="Name" class="form-name form-control" id="form-name">
                             </div>
                             <div class="form-group">
@@ -89,7 +90,7 @@
                               <label class="sr-only" for="form-phone">Phone Number</label>
                               <input type="tel" name="form-phone" placeholder="Phone Number" class="form-phone form-control" id="form-phone">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group form-college-group">
                               <label class="sr-only" for="form-college">College</label>
                               <select name="form-college" placeholder="College" class="form-college form-control" id="form-college">
                               <option></option>
@@ -99,11 +100,12 @@
                                 <label for="form-other-college"></label>
                                 <p>Other College</p>
                               </div>
+                              <div class="form-group">
+                                <label class="sr-only" for="form-college-name">First name</label>
+                                  <input type="text" name="form-college-name" placeholder="College Name" class="form-college-name form-control invisible" id="form-college-name">
+                              </div>
                             </div>
-                            <div class="form-group">
-                              <label class="sr-only" for="form-college-name">First name</label>
-                                <input type="text" name="form-college-name" placeholder="College Name" class="form-college-name form-control invisible" id="form-college-name">
-                            </div>
+                            
                             <button type="submit" class="btn">Register</button>
                         </form>
                       </div>

@@ -1,3 +1,6 @@
+
+var SERVER = 'http://127.0.0.1:8000/serv/';
+
 $(document).ready(function(){
   
     //Good Selects
@@ -23,5 +26,13 @@ $(document).ready(function(){
         $("input[type='text'].form-college-name").removeClass("visible");
       }
     });
+    
+    //Get Colleges
+    
+    $.ajax({dataType:"json", url:SERVER+"college/model/", type: "GET", data:{}, success: function(response){
+      for(i=0;i<response.length;++i){
+        $("select.form-college").append("<option value='"+response[i]["CollegeID"]+"'>"+response[i]["CollegeName"]+"</option>");
+      }
+    }});
   
 });
