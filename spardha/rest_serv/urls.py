@@ -4,6 +4,7 @@ from . import user_views, college_views
 urlpatterns = [
     url(r'^register/',user_views.RegisterView),
     url(r'^login/',user_views.LoginView),
+    url(r'^player/ProfileImage/',user_views.PhotoUploadView),
 #    url(r'^user/',),
     url(r'^college/model/',college_views.CollegeView),
 #    url(r'^team/model/',),

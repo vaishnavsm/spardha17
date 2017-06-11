@@ -9,15 +9,14 @@ class CollegeSerializer(serializers.ModelSerializer):
     
  
 class PlayerSerializer(serializers.ModelSerializer):
-     CollegeRef = CollegeSerializer(read_only=True)
-     PlayerID = serializers.CharField(read_only=True)
-     class Meta:
-         model=Player
-         fields=('PlayerID','PlayerName','CollegeRef','Email','PhoneNumber')
-         extra_kwargs = {'PlayerID':{'read_only':True,'required':False},'PlayerName':{'read_only':False},'PlayerID':{'read_only':False},
-                        'Email':{'read_only':False},'CollegeRef':{'read_only':True}}
- 		
- 		
+    CollegeRef = CollegeSerializer(read_only=True)
+    PlayerID = serializers.CharField(read_only=True)
+    class Meta:
+        model=Player
+        fields=('PlayerID','PlayerName','CollegeRef','Email','PhoneNumber','PlayerImage')
+        extra_kwargs = {'PlayerID':{'read_only':True,'required':False},'PlayerName':{'read_only':False},'PlayerID':{'read_only':False},
+                        'Email':{'read_only':False},'CollegeRef':{'read_only':True},'PlayerImage':{'read_only':True}}
+ 
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model=Event

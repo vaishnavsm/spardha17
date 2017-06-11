@@ -2,14 +2,14 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
-from rest_framework.parsers import JSONParser
+from rest_framework.parsers import JSONParser, FileUploadParser
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .models import *
 from .serializers import *
 import json
 from rest_framework.authtoken.models import Token
-from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.decorators import api_view, authentication_classes, permission_classes, parser_classes
 # from .utils import *
 
 @api_view(['GET','POST'])
@@ -48,13 +48,32 @@ def LoginView(request):
         data = JSONParser().parse(request)
         user = authenticate(username=data['Email'],password=data['Password'])
         if(user is None):
-            return HttpResponse(json.dumps({"detail":"login_failed"}), status=400, content_type='application/json')
+            return HttpResponse(json.dumps({"detail":"login_failed"}), status=404, content_type='application/json')
         try:
             token=Token.objects.get(user=user)
         except Token.DoesNotExist:
             token = Token.objects.create(user=user)
             token.save()
         return HttpResponse(json.dumps({"token":token.key}), status=200, content_type='application/json')
+    else:
+        HttpResponse(json.dumps({"error":"true","detail":"unsupported_request"}), content_type="application/json", status=400)
+    return HttpResponse(json.dumps({"error":"true","detail":"bad_request"}), content_type="application/json", status=400)
+
+#Picture Validation Form
+from django import forms
+class ImageUploadForm(forms.Form):
+    PlayerImage = forms.ImageField()
+
+@api_view(['POST'])
+@parser_classes([FileUploadParser])
+@csrf_exempt
+def PhotoUploadView(request):
+    if(request.method=='POST'):
+        print(request.data)
+        form = ImageUploadForm(request.data)
+        if(form.is_valid()):
+            print("yer")
+        return HttpResponse(json.dumps({"detail":"unsupported_request"}), content_type="application/json", status=200)
     else:
         HttpResponse(json.dumps({"error":"true","detail":"unsupported_request"}), content_type="application/json", status=400)
     return HttpResponse(json.dumps({"error":"true","detail":"bad_request"}), content_type="application/json", status=400)
